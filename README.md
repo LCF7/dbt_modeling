@@ -1,6 +1,8 @@
 # Sales Lifecycle Analysis with dbt and Snowflake
 This project transforms raw data from a CRM system into a robust, analytical data model designed to answer complex questions about the sales lifecycle. Using dbt and Snowflake, it builds a pipeline that not only cleans and structures the information but also enriches it for advanced analytics and Machine Learning applications.
 
+![HLD](https://drive.google.com/uc?export=view&id=1YPBpHyl0VhO7xocbhnu_REyGFw1dXN5J) 
+
 ## Key Features:
 
 ### Layered Data Modeling: 
