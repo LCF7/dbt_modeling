@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: deal
+    database: DEAL
+    schema: RAW_CRM
+    tables:
+      
+      - name: sales_reps             # dbt: {{ source('deal', 'sales_reps') }}
+        identifier: RAW_SALES_REPS  
+
+      
+      - name: deals                
+        identifier: RAW_DEALS_CRM   
+
+      
+      - name: transactions       
+        identifier: RAW_TRANSACTIONS 

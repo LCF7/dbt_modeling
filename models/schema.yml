@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: src_deals
+    description: "Staging model for raw deal data from the CRM."
+    columns:
+      - name: deal_id
+        description: "The primary key for a deal."
+        tests:
+          - unique
+          - not_null
+
+      - name: sales_rep_id
+        description: "Foreign key to the sales representative."
+        tests:
+          - not_null          
+
+      - name: deal_stage
+        description: "The current stage of the deal in the sales pipeline."
+        tests:
+          - accepted_values:
+              values: ['Discovery', 'Negotiation', 'Contract', 'Closed Won', 'Closed Lost']
+
+      - name: estimated_value
+        description: "The estimated value of the deal in USD."
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+
+      - name: probability_percent
+        description: "The probability of closing the deal, as a percentage."
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100
+      
+
+  - name: src_sales_reps
+    description: "Staging model for raw sales representative data."
+    columns:
+      - name: sales_rep_id
+        description: "The primary key for a sales representative."
+        tests:
+          - unique
+          - not_null
+
+  - name: src_transactions
+    description: "Staging model for raw transaction data."
+    columns:
+      - name: transaction_id
+        description: "The primary key for a transaction."
+        tests:
+          - unique
+          - not_null
+      - name: transaction_status
+        tests:
+          - accepted_values:
+              values: ['Completed', 'Pending', 'Failed']
+
